@@ -1,4 +1,4 @@
-package com.example.proj10.registrationLogin.controller.security;
+package com.example.proj10.Register.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

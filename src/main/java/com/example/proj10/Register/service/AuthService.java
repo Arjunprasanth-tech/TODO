@@ -1,11 +1,13 @@
-package com.example.proj10.registrationLogin.controller.service;
+package com.example.proj10.Register.service;
 
-import com.example.auth.dto.LoginRequest;
-import com.example.auth.dto.RegisterRequest;
-import com.example.auth.entity.User;
-import com.example.auth.repository.UserRepository;
-import com.example.auth.security.JwtUtil;
+
+import com.example.proj10.Register.dto.LoginRequest;
+import com.example.proj10.Register.dto.RegisterRequest;
+import com.example.proj10.Register.entity.User;
+import com.example.proj10.Register.repository.UserRepository;
+import com.example.proj10.Register.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,9 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthService {
 
-    private final UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
+//    private final UserosiReptory userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
 

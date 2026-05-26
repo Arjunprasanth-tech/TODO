@@ -1,4 +1,4 @@
-package com.example.proj10.registrationLogin.controller.dto;
+package com.example.proj10.Register.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

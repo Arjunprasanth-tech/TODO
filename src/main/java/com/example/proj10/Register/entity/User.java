@@ -1,4 +1,4 @@
-package com.example.proj10.registrationLogin.controller.entity;
+package com.example.proj10.Register.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

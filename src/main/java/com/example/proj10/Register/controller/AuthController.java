@@ -1,8 +1,9 @@
-package com.example.proj10.registrationLogin.controller;
+package com.example.proj10.Register.controller;
 
-import com.example.auth.dto.LoginRequest;
-import com.example.auth.dto.RegisterRequest;
-import com.example.auth.service.AuthService;
+
+import com.example.proj10.Register.dto.LoginRequest;
+import com.example.proj10.Register.dto.RegisterRequest;
+import com.example.proj10.Register.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
