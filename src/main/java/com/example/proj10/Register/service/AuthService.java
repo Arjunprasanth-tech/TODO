@@ -1,0 +1,66 @@
+package com.example.proj10.Register.service;
+
+
+import com.example.proj10.Register.dto.LoginRequest;
+import com.example.proj10.Register.dto.RegisterRequest;
+import com.example.proj10.Register.entity.User;
+import com.example.proj10.Register.repository.UserRepository;
+import com.example.proj10.Register.security.JwtUtil;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+@Service
+@RequiredArgsConstructor
+public class AuthService {
+
+    @Autowired
+    private UserRepository userRepository;
+//    private final UserosiReptory userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
+
+    public String register(RegisterRequest request) {
+
+        String email = request.getEmail().trim();
+
+        if (userRepository.findByEmail(email).isPresent()) {
+            throw new RuntimeException(
+                    "Email already exists");
+        }
+
+        User user = new User();
+
+        user.setName(request.getName().trim());
+        user.setEmail(email);
+        user.setPassword(
+                passwordEncoder.encode(
+                        request.getPassword()));
+
+        userRepository.save(user);
+
+        return "Registration Successful";
+    }
+
+    public String login(LoginRequest request) {
+
+        User user = userRepository
+                .findByEmail(
+                        request.getEmail().trim())
+                .orElseThrow(() ->
+                        new RuntimeException(
+                                "User not found"));
+
+        if (!passwordEncoder.matches(
+                request.getPassword(),
+                user.getPassword())) {
+
+            throw new RuntimeException(
+                    "Invalid Password");
+        }
+
+        return jwtUtil.generateToken(
+                user.getEmail());
+    }
+}
