@@ -25,9 +25,9 @@ public class PriorityService {
      */
     public List<PriorityModel> getOrCreateStatuses() {
         if (repo.count() == 0) {
-            PriorityModel s1 = new PriorityModel(UUID.randomUUID().toString(), "complete");
-            PriorityModel s2 = new PriorityModel(UUID.randomUUID().toString(), "pending");
-            PriorityModel s3 = new PriorityModel(UUID.randomUUID().toString(), "overdue");
+            PriorityModel s1 = new PriorityModel(UUID.randomUUID().toString(), "HIGH");
+            PriorityModel s2 = new PriorityModel(UUID.randomUUID().toString(), "MEDIUM");
+            PriorityModel s3 = new PriorityModel(UUID.randomUUID().toString(), "LOW");
 
             repo.saveAll(Arrays.asList(s1, s2, s3));
         }
