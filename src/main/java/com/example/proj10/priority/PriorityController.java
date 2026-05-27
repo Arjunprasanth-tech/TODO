@@ -18,7 +18,7 @@ public class PriorityController {
 
     private final PriorityService service;
 
-    @GetMapping("/status/get")
+    @GetMapping("/priority/get")
     public ResponseEntity<List<PriorityModel>> getStatus(){
         List<PriorityModel> list=service.getOrCreateStatuses();
         return ResponseEntity.ok(list);
