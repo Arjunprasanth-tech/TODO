@@ -1,24 +1,28 @@
 package com.example.proj10.priority;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import com.example.proj10.priority.PriorityModel;
+import com.example.proj10.priority.PriorityService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
-@RequestMapping(path = "/priorityDetails")
 @CrossOrigin
+@RequiredArgsConstructor
 public class PriorityController {
-    @Autowired
-    private PriorityService priorityService;
 
-    @PostMapping(path = "/addPriority")
-    public ResponseEntity<?>addPriority(@RequestBody PriorityModel priorityModel){
-        try {
-            return priorityService.addPriority(priorityModel);
-        } catch (Exception e) {
-            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    private final PriorityService service;
+
+    @GetMapping("/priority/get")
+    public ResponseEntity<List<PriorityModel>> getStatus(){
+        List<PriorityModel> list=service.getOrCreateStatuses();
+        return ResponseEntity.ok(list);
     }
+
 
 }

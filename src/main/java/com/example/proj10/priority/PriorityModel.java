@@ -1,23 +1,22 @@
 package com.example.proj10.priority;
 
-import jakarta.persistence.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Entity
-@Table(name = "priorityTable")
-@AllArgsConstructor
+@Table(name = "priority")
+@Data
 @NoArgsConstructor
-public class PriorityModel {
+@AllArgsConstructor
+public class PriorityModel{
+
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "name")
+    private String id;
     private String name;
-
-    @Column(name = "priorityId")
-    private String priorityId;
 }
