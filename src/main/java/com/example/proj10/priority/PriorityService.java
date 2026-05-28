@@ -5,7 +5,6 @@ import com.example.proj10.priority.PriorityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,18 +18,20 @@ public class PriorityService {
     }
 
     /**
-     * Checks if statuses are present in the database.
-     * If empty, populates the predefined statuses with unique UUIDs.
-     * Then, retrieves and returns all statuses from the database.
+     * Retrieves all statuses from the database.
      */
-    public List<PriorityModel> getOrCreateStatuses() {
-        if (repo.count() == 0) {
-            PriorityModel s1 = new PriorityModel(UUID.randomUUID().toString(), "HIGH");
-            PriorityModel s2 = new PriorityModel(UUID.randomUUID().toString(), "MEDIUM");
-            PriorityModel s3 = new PriorityModel(UUID.randomUUID().toString(), "LOW");
-
-            repo.saveAll(Arrays.asList(s1, s2, s3));
-        }
+    public List<PriorityModel> getAllStatuses() {
         return repo.findAll();
+    }
+
+    /**
+     * Saves or updates a priority.
+     * If the ID is null or empty, the backend generates a random UUID.
+     */
+    public PriorityModel saveOrUpdatePriority(PriorityModel priority) {
+        if (priority.getId() == null || priority.getId().trim().isEmpty()) {
+            priority.setId(UUID.randomUUID().toString());
+        }
+        return repo.save(priority);
     }
 }
