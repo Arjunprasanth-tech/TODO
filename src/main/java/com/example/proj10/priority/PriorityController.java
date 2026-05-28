@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,8 +22,14 @@ public class PriorityController {
 
     @GetMapping("/priority/get")
     public ResponseEntity<List<PriorityModel>> getStatus(){
-        List<PriorityModel> list=service.getOrCreateStatuses();
+        List<PriorityModel> list=service.getAllStatuses();
         return ResponseEntity.ok(list);
+    }
+
+    @PutMapping("/priority/save")
+    public ResponseEntity<PriorityModel> savePriority(@RequestBody PriorityModel priority) {
+        PriorityModel saved = service.saveOrUpdatePriority(priority);
+        return ResponseEntity.ok(saved);
     }
 
 
