@@ -4,12 +4,7 @@ import com.example.proj10.priority.PriorityModel;
 import com.example.proj10.priority.PriorityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,7 +21,7 @@ public class PriorityController {
         return ResponseEntity.ok(list);
     }
 
-    @PutMapping("/priority/save")
+    @PostMapping("/priority/post")
     public ResponseEntity<PriorityModel> savePriority(@RequestBody PriorityModel priority) {
         PriorityModel saved = service.saveOrUpdatePriority(priority);
         return ResponseEntity.ok(saved);
